@@ -21,7 +21,7 @@ MONGO_URI=mongodb://localhost/conduit
 
 ### To get the Node server running locally with Docker
 
-1. Checkout the repo `git clone https://github.com/ice-services/moleculer-realworld-example-app.git`
+1. Checkout the repo
 2. `cd moleculer-realworld-example-app`
 3. Start with docker-compose: `docker-compose up -d`
 
@@ -31,8 +31,6 @@ MONGO_URI=mongodb://localhost/conduit
 5. Scale up services
 
    `docker-compose scale api=3 articles=2 users=2 comments=2 follows=2 favorites=2`
-
-## Code Overview
 
 ### Dependencies
 
