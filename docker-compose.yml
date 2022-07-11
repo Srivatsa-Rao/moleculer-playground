@@ -1,7 +1,6 @@
 version: "3.0"
 
 services:
-
   gateway:
     build:
       context: .
@@ -15,11 +14,12 @@ services:
     depends_on:
       - nats
     labels:
-      - "traefik.enable=true"   
+      - "traefik.enable=true"
       - "traefik.backend=api"
       - "traefik.port=3000"
       - "traefik.frontend.entryPoints=http"
       - "traefik.frontend.rule=PathPrefix:/"
+
     #deploy:
     #  replicas: 2
 
@@ -114,11 +114,17 @@ services:
       - ./db:/data/db
 
   traefik:
-    image: traefik:1.7
-    command: --web --docker --docker.domain=docker.localhost --logLevel=INFO --docker.exposedbydefault=false
+    image: "traefik:v2.8"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
     ports:
       - "3000:80"
       - "3001:8080"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/null:/traefik.toml
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      # - /dev/null:/traefik.toml
