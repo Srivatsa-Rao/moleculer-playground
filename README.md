@@ -22,13 +22,12 @@ MONGO_URI=mongodb://localhost/conduit
 ### To get the Node server running locally with Docker
 
 1. Checkout the repo
-2. `cd moleculer-realworld-example-app`
-3. Start with docker-compose: `docker-compose up -d`
+2. Start with docker-compose: `docker-compose up -d`
 
    It starts all services in separated containers, a NATS server for communication, a MongoDB server for database and a [Traefik](https://traefik.io/) reverse proxy
 
-4. Open the http://docker-ip:3000
-5. Scale up services
+3. Open the http://docker-ip:3000
+4. Scale up services
 
    `docker-compose scale api=3 articles=2 users=2 comments=2 follows=2 favorites=2`
 
